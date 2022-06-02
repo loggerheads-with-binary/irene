@@ -26,7 +26,7 @@ import sys
 python3 -m pip install virtualenv
 python3 -m venv . gmail_venv
 activate 
-curl "" --output requirements.txt
+curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/requirements.txt" --output requirements.txt
 python3 -m pip install -r requirements.txt
 ```
 
@@ -34,18 +34,18 @@ python3 -m pip install -r requirements.txt
 ```
 conda create -n gmail_venv
 conda activate gmail_venv
-curl "" --output requirements.txt
+curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/requirements.txt" --output requirements.txt
 python3 -m pip install -r requirements.txt
 ```
 
 **Copy the main script to your *(For python/anaconda installations)* machine**
 ```
-curl "" --output irene.py
+curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/irene.py" --output irene.py
 ```
 
 **Copy the main script to *(Jupyter/Colab)*  your locale**
 ```
-!curl ""
+!curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/irene.py" --output irene.py
 ```
 
 ## Generating a token:
