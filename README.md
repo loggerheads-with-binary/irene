@@ -16,7 +16,7 @@ It has been adequately tested, however any breaks/bugs can be reported
 This project can be used through the use of jupyter notebooks or using python scripts.
 
 **For colab/ipynb, add the following lines before importing the script** 
-```ipython
+```python
 import sys 
 ! {sys.executable} -m pip install google_api_python_client google_auth_oauthlib httplib2 oauth2client protobuf
 ```
@@ -44,7 +44,7 @@ curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/irene.py" --ou
 ```
 
 **Copy the main script to *(Jupyter/Colab)*  your locale**
-```ipython
+```python
 !curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/irene.py" --output irene.py
 ```
 
