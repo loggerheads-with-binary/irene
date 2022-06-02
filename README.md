@@ -16,13 +16,13 @@ It has been adequately tested, however any breaks/bugs can be reported
 This project can be used through the use of jupyter notebooks or using python scripts.
 
 **For colab/ipynb, add the following lines before importing the script** 
-```
+```ipython
 import sys 
 ! {sys.executable} -m pip install google_api_python_client google_auth_oauthlib httplib2 oauth2client protobuf
 ```
 
 **For python installations, consider building a virtual environment**
-```
+```bash
 python3 -m pip install virtualenv
 python3 -m venv . gmail_venv
 activate 
@@ -31,7 +31,7 @@ python3 -m pip install -r requirements.txt
 ```
 
 **For anaconda installations, consider building a virtual environment this way**
-```
+```bash
 conda create -n gmail_venv
 conda activate gmail_venv
 curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/requirements.txt" --output requirements.txt
@@ -39,12 +39,12 @@ python3 -m pip install -r requirements.txt
 ```
 
 **Copy the main script to your *(For python/anaconda installations)* machine**
-```
+```bash
 curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/irene.py" --output irene.py
 ```
 
 **Copy the main script to *(Jupyter/Colab)*  your locale**
-```
+```ipython
 !curl "https://gitlab.com/loggerheads-with-binary/irene/-/raw/main/irene.py" --output irene.py
 ```
 
@@ -54,7 +54,7 @@ From google console, create a new OAuth2 ID and download the file as `client.jso
 Create a blank new file called `token.json`
 
 Run this code on your system:
-```
+```python
 import irene
 irene.get_client('client.json' , 'token.json')
 ```
@@ -70,7 +70,7 @@ In the downloaded `irene.py` script, also modify the variable `GLOBAL_SENDER` to
 
 Make appropriate modifications to the below test case 
 
-```
+```python
 ##Import 
 import irene
 
