@@ -70,7 +70,7 @@ def send_mail(  to : list  ,
 
     global CREDENTIALS, GLOBAL_SENDER
 
-    msg = MIMEMultipart('alternative')
+    msg = MIMEMultipart()
     data = DefaultDict(data)
 
     msg['to'] = rec  = get_ppl_str(to)
@@ -94,11 +94,8 @@ def send_mail(  to : list  ,
     msg.attach(MIMEText(body , 'html'))
 
     if attachment is not None:
+        msg.attach(add_attachment(attachment , a_type))
 
-        m   = add_attachment(attachment , a_type)
-
-        if m is not None:
-            msg.attach(m)
 
     sent = SendMailInternal(rec , msg , threadId)
 
@@ -125,6 +122,8 @@ def SendMailInternal(rec , msg : MIMEMultipart , threadId : str = None):
             continue 
 
 def add_attachment(file : str , a_type : str  = 'file' ):
+
+    print('a adding')
 
     if a_type == 'url':
         import subprocess
