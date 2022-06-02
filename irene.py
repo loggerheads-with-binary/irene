@@ -24,7 +24,7 @@ import warnings
 
 CREDENTIALS, SERVICE = None, None
 STRICT = True
-GLOBAL_SENDER = "aniruddh.iitb.92@gmail.com"
+GLOBAL_SENDER = None
 SCOPES = ['https://mail.google.com']
 APPLICATION_NAME = 'Irene EMail Sender'
 
