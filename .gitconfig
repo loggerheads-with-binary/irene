@@ -1,0 +1,2 @@
+[alias]
+    add-all  = add README.md .gitconfig credentials credentials.gitkeep irene.py requirements.txt .gitignore 

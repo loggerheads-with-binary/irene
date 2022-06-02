@@ -4,7 +4,7 @@
 
 ### Introduction:
 
-This project was specifically build to cater the need of replying to mail threads in a smooth and efficient manner. This script exposes the very few key functions required to actually build a workable model for such mail threads. The
+This project was specifically build to cater the need of replying to mail threads in a smooth and efficient manner. This script exposes the very few key functions required to actually build a workable model for such mail threads.
 
 The primary use case can be chalked down to mail campaigns where they wish subsequent mails to be delivered through the same thread. 
 
