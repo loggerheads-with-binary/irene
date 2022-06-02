@@ -71,8 +71,14 @@ In the downloaded `irene.py` script, also modify the variable `GLOBAL_SENDER` to
 Make appropriate modifications to the below test case 
 
 ```
-##Client setup
+##Import 
 import irene
+
+
+##Setup your EMail ID as the sender
+irene.GLOBAL_SENDER = "mymail@example.com"
+
+##Setup client credentials
 irene.get_client(token =  'token.json' )
 
 
