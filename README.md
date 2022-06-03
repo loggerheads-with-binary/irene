@@ -86,6 +86,8 @@ import pandas as pd
 import numpy as np  
 df = pd.read_csv('data.csv')            ##Make sure columns count, threadId, msgId exist in the CSV, even if they are filled blank
 
+SUBJECT_TEXT = "Billing for {name} on {date}"
+
 BODY_TEXT = """\
 Hello {name},
 
@@ -102,17 +104,21 @@ df['count'] = df['count'].fillna(0)     ##Assigns a value of 0 for any rows with
 
 for _idx , row in df.iterrows():
 
-    
-
     msgId = irene.nan_to_None(row['msgId'])         ##nan_to_None is a safety function
     threadId = irene.nan_to_None(row['threadId'])
 
-    response = irene.send_mail( to = "sample@example.com" , body_html_template = BODY_TEXT , #to and body_html_template are compulsory arguments
-                                data = row,             ##Compulsory, just send dict() if you have fixed body text and subject with no variables
-                                cc = ['1@2.com' , '33@23andme.com' ] , subject = 'Well well well' ,     ##cc and subject are not mandatory
+
+    safeRow = irene.SafeDict(row)           ##SafeDict is a failsafe and must be used for string formatting
+    
+    subject = SUBJECT_TEXT.format_map(safeRow)
+    body = BODY_TEXT.format_map(safeRow)
+
+    response = irene.send_mail( to = "sample@example.com" , body = body ,                               #to and body are compulsory arguments
+                                cc = ['1@2.com' , '33@23andme.com' ] , subject = subject ,              ##cc and subject are not mandatory
                                 msgId = msgId, threadId = threadId , 
-                                attachment = None,  ##attach a file/url
-                                a_type = None       ##Use 'file' if attachment is a file, else 'url' if it is a URL
+                                attachment = None,                                                      ##attach a file/url
+                                a_type = None                                                           ##Use 'file' if attachment is a file, 
+                                                                                                        ##else 'url' if it is a URL
     )   
 
     row['count'] +=1 

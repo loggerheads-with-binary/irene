@@ -29,6 +29,8 @@ logger = logging.getLogger(__name__)
 class DefaultDict(dict):
     __getitem__ = lambda self, key : self.get(key , f'{{{key}}}') 
 
+SafeDict = DefaultDict
+
 def get_ppl_str(ppl : list):
     
     if isinstance(ppl , str):
