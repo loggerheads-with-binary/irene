@@ -87,12 +87,34 @@ def send_mail(  to : list  ,
     msg.attach(MIMEText(body , 'html'))
 
     if attachment is not None:
-        msg.attach(add_attachment(attachment , a_type))
+
+        add_attachments(msg , attachments, a_type)
+
+        #msg.attach(add_attachment(attachment , a_type))
 
 
     sent = SendMailInternal(rec , msg , threadId)
 
     return sent
+
+def add_attachments(msg : MIMEMultipart ,attachments , a_type = 'file'):
+
+    if isinstance(attachments, str):
+
+        s = add_attachment(attachments , a_type)
+        
+        if s is None:
+            warnings.warn('Attachment skipped')
+        
+        return msg.attach(s)
+
+    elif hasattr(attachments, '__iter__'):          
+
+        _ = [ add_attachments(msg , str(attachment) , a_type) for attachment in attachments]
+
+    else:
+
+        raise TypeError(f'Attachments must be in string form(single) or iterable. Class {type(attachments).__name__} is invalid' ) 
 
 def SendMailInternal(rec , msg : MIMEMultipart , threadId : str = None):
 
@@ -129,6 +151,7 @@ def add_attachment(file : str , a_type : str  = 'file' ):
 
             else:
                 warnings.warn(f'Url {file} cannot be downloaded. Returning None')
+                return None
 
         else:
 
