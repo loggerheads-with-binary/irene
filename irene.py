@@ -31,6 +31,15 @@ class DefaultDict(dict):
 
 SafeDict = DefaultDict
 
+def doc_to_html(file : str):
+
+    import mammoth 
+
+    with open(file , 'rb') as handle:
+        html_text = mammoth.convert_to_html(handle ).value 
+
+    return html_text
+
 def get_ppl_str(ppl : list):
     
     if isinstance(ppl , str):

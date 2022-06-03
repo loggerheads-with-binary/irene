@@ -58,8 +58,8 @@ Run this code on your system:
 import irene
 irene.get_client('client.json' , 'token.json')
 ```
-It should open your default web browser and ask you to sign in with the google credentials of your preferred EMail.
-**Note:: This EMail ID must be the one you wish to send mails from**. **
+It should open your default web browser and ask you to sign in with the google credentials of your preferred EMail.        
+**Note:: This EMail ID must be the one you wish to send mails from**.          
 
 Also, after the login, the script could crash as observed a few times. This is okay as the token file has been generated.
 
@@ -100,6 +100,15 @@ John Smith and Jade Smith Inc.
 +0 123 456 7890
 """
 
+#Converted using wordtohtml.net
+BODY_HTML = """\
+<div>Hello&nbsp;{name},<br><br>Hope&nbsp;you&nbsp;are&nbsp;having&nbsp;a&nbsp;good&nbsp;day.<br><br>Please find your billing token {token_billing} attached for the shipment to {cust_address}<br><br>Regards,<br>John Smith and Jade Smith Inc.<br>+0 123 456 7890</div>
+"""
+
+##Alternatively you can also use the function irene.doc_to_html 
+#BODY_HTML = irene.doc_to_html('file.docx')
+
+
 df['count'] = df['count'].fillna(0)     ##Assigns a value of 0 for any rows with count being blank
 
 for _idx , row in df.iterrows():
@@ -111,7 +120,7 @@ for _idx , row in df.iterrows():
     safeRow = irene.SafeDict(row)           ##SafeDict is a failsafe and must be used for string formatting
     
     subject = SUBJECT_TEXT.format_map(safeRow)
-    body = BODY_TEXT.format_map(safeRow)
+    body = BODY_HTML.format_map(safeRow)        ##Note this should be in HTML format
 
     response = irene.send_mail( to = "sample@example.com" , body_html = body ,                               #to and body are compulsory arguments
                                 cc = ['1@2.com' , '33@23andme.com' ] , subject = subject ,              ##cc and subject are not mandatory
