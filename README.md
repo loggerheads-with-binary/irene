@@ -113,7 +113,7 @@ for _idx , row in df.iterrows():
     subject = SUBJECT_TEXT.format_map(safeRow)
     body = BODY_TEXT.format_map(safeRow)
 
-    response = irene.send_mail( to = "sample@example.com" , body = body ,                               #to and body are compulsory arguments
+    response = irene.send_mail( to = "sample@example.com" , body_html = body ,                               #to and body are compulsory arguments
                                 cc = ['1@2.com' , '33@23andme.com' ] , subject = subject ,              ##cc and subject are not mandatory
                                 msgId =  msgId, threadId = threadId , 
                                 attachment = None,                                                      ##attach a file/url
