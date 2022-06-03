@@ -115,7 +115,7 @@ for _idx , row in df.iterrows():
 
     response = irene.send_mail( to = "sample@example.com" , body = body ,                               #to and body are compulsory arguments
                                 cc = ['1@2.com' , '33@23andme.com' ] , subject = subject ,              ##cc and subject are not mandatory
-                                msgId = msgId, threadId = threadId , 
+                                msgId =  msgId, threadId = threadId , 
                                 attachment = None,                                                      ##attach a file/url
                                 a_type = None                                                           ##Use 'file' if attachment is a file, 
                                                                                                         ##else 'url' if it is a URL

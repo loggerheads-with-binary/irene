@@ -56,12 +56,11 @@ def get_msgId(msgId , threadId):
     return msg['Message-ID']
 
 def send_mail(  to : list  , 
-                body_html_template : str  ,
-                data : DefaultDict,
+                body_html : str  ,
                 cc : list = None , 
                 subject : str = "",
                 threadId : str = None , msgId : str = None , 
-                attachment : str = None, a_type : str = 'file' ):
+                attachments : str = None, a_type : str = 'file' ):
 
     global CREDENTIALS, GLOBAL_SENDER
 
@@ -70,11 +69,12 @@ def send_mail(  to : list  ,
 
     msg['to'] = rec  = get_ppl_str(to)
     msg['from'] = GLOBAL_SENDER
+
     if cc is not None:
         msg['cc'] = get_ppl_str(cc)
     
-    msg['subject'] = subject.format_map(data)
-    body = body_html_template.format_map(data)
+    msg['subject'] = subject 
+    msg.attach(MIMEText(body_html , 'html'))
 
     if threadId is not None:
 
@@ -86,14 +86,11 @@ def send_mail(  to : list  ,
         msg.add_header('Reference' , msgId)
         msg.add_header('In-Reply-To' , msgId)
 
-    msg.attach(MIMEText(body , 'html'))
-
-    if attachment is not None:
+    if attachments is not None:
 
         add_attachments(msg , attachments, a_type)
 
         #msg.attach(add_attachment(attachment , a_type))
-
 
     sent = SendMailInternal(rec , msg , threadId)
 
